@@ -1,0 +1,24 @@
+{% load extras %}
+
+검색어를 입력하세요.
+
+<form action="/search/" method="get">
+    <p><input type="text" name="keyword" id="id_message" value="{{ keyword }}" /><input type="submit"/></p>
+</form>
+
+{% if is_hits   %}
+    {% for a_hit in res.hits.hits %}
+        <div >
+            <b><a href="{{a_hit|get_fileurl}}">{{ a_hit | get_filename}}</a></b>, {{a_hit|get_filesize}},   {{ a_hit | get_file_modified_at }}
+            <br/>
+            {{a_hit|get_fileurl}}
+            <br/>
+            {{ a_hit|get_highlight|safe}}
+            <br/>
+            <br/>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>검색 결과가 없습니다.</p>
+{% endif %}
+
