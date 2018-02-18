@@ -18,6 +18,14 @@
             <br/>
         </div>
     {% endfor %}
+
+    {%if start_from > 0 %}
+        <a href="/search/?keyword={{keyword}}&from={{before_from}}">이전</a>
+    {% endif %}
+    |
+    {%if has_next %}
+        <a href="/search/?keyword={{keyword}}&from={{next_from}}">다음</a>
+    {% endif %}
 {% else %}
     <p>검색 결과가 없습니다.</p>
 {% endif %}
